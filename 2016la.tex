@@ -1,0 +1,147 @@
+\begin{center}
+    \textbf{National Taiwan University Dept. of Mathematics \\ Graduate Entrance Exam 2016: Linear Algebra \\ Solutions} 
+    \noindent\rule{\textwidth}{0.4pt}
+\end{center}
+
+\begin{enumerate}
+    \item Three vectors are linearly dependent if
+    \[
+    \begin{vmatrix}
+        1 & 3 & a \\
+        a & 4 & 3 \\
+        0 & a & 1
+    \end{vmatrix} = 0
+    \]
+    the resulting equation is $a^3 - 6a + 4 = 0$, which has 3 roots: $2$ and $1 \pm \sqrt{3}. \qed$
+    \item If we use the vectors given by the problem, it will be too slow to solve. Instead we use the standard basis $\{1, x, x^2\}$ and do Gram-Schmidt:
+    \begin{align*}
+    v_1 &= 1	\\
+    v_2 &= x - \frac{\langle x, 1\rangle}{||1||^2} 1 = x-1 \\
+    v_3 &= x^2 - \frac{\langle x^2, 1\rangle}{||1||^2} 1 - \frac{\langle x^2, x-1\rangle}{||x-1||^2} (x-1) = x^2 - 2x + \frac{2}{3}
+    \end{align*}
+    and after normalizing, we have
+    \[
+    w_1 = \frac{1}{2}, w_2 = \sqrt{\frac{3}{2}}(x-1), w_3 = \sqrt{\frac{45}{8}}(x^2 - 2x + \frac{2}{3}) \qed
+    \]
+
+    \item Note that even if the characterstic polynomial of A is $-(\lambda-1)(\lambda^2 - 2\lambda+10)$ which says that $A$ is not diagonalizable over $\mathbb{R}$, but if two matrices are simliar in $\mathbb{R}$, then $P$ must be in $M_3(\mathbb{R})$. So let 
+    \[
+    B = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 3 \\
+        0 & -3 & 1
+    \end{pmatrix}
+    \]
+    If we can write $A = HDH^{-1}, B = QDQ^{-1}$, then $P^{-1}AP = B = QDQ^{-1} = QH^{-1}DHQ^{-1}$, so $P = HQ^{-1}$. Directly solve for $P$ and $Q$ gives 
+    \[
+    H = \begin{pmatrix}
+        1 & -i & i\\
+        0 & 1 & 1\\
+        1 & 1 & 1
+    \end{pmatrix}, \;
+    Q = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & i & i \\
+        0 & 1 & 1
+    \end{pmatrix}, \;
+    D = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & 1+3i & 0 \\
+        0 & 0 & 1-3i
+    \end{pmatrix}
+    \]
+    direct computation then gives
+    \[
+    HQ^{-1} = \begin{pmatrix}
+        1 & -1 & 0 \\
+        0 & 0 & 1\\
+        1 & 0 & 1
+    \end{pmatrix}
+    \qed	
+    \]
+    \item The eigenvalues are $1,-2,-1$, which correspond to three eigenvectors $v_1,v_2$ and $v_3$. Also note that $A^T$ has three eigenvectors $w_1, w_2$ and $w_3$ corresponding to the same eigenvalue as $A$. We now claim that 
+    \begin{center}
+        $x_iy_j^T$ is an eigenvalue of $T$ for $i,j = 1,2,3$
+    \end{center} 
+    Indeed
+    \[
+    T(x_iy_j^T) = Ax_i y_j^T A^{-1} = \lambda x_i \lambda^{-1} y_j^T = x_iy_j^T
+    \]
+    as 
+    \[
+    (y_j^T A^{-1})^T = (A^{-1})^T y^j = (A^T)^{-1} y_j = \lambda^{-1}y_j \Rightarrow y_j^T A^{-1} = \lambda^{-1}y_j^T
+    \]
+    since $y_j$ is also an eigenvector of $A^T$ but with $1/\lambda$ as eigenvalue. Therefore we conclude that $T$ is diagonalizable since eigenvectors of $A$ and $A^T$ are linearly independent, so does $\{x_iy_j^T\}_{1 \leq i,j \leq 3}. \qed$
+    \item Without loss of generality, we can assume that $A$ is a Jordan block of eigenvalue $\lambda$, as matrices are simliar if and only if they have the same Jordan canonical form. Our goal is to prove that $B$ has a Jordan form that is exactly $A$. 
+    
+    Let $A \in M_{n\times n}(\mathbb{R})$ be a Jordan block of eigenvalue $\lambda$. 
+    If $\lambda$ is $0$, then since $\rank A = \rank A^2$, the eigenvalue 0 has no new vector in $A^2$: all eigenvectors are in $A$, which means that the Jordan block that has 0 as eigenvalue will have size 1. So $A$ must be a zero matrix, and so must be $A^3, B^3$ and $B$.
+
+    If $\lambda \neq 0$, a quick calculation of $A^3$ gives 
+    \[
+    \begin{pmatrix}
+        \lambda^3 & n \lambda^2 & \frac{n(n-1)}{2} \lambda & 0 & \cdots & 0  \\
+        0 & \lambda^3 & n \lambda^2 & \frac{n(n-1)}{2} \lambda & 0 & \cdots   \\
+        0 & 0 & \lambda^3 & n \lambda^2 & \frac{n(n-1)}{2} \lambda &  \cdots   \\
+        \vdots & & &\vdots & & \vdots \\
+        0 & 0& 0& 0& 0& \lambda^3 
+    \end{pmatrix}	
+    \]
+    This is an upper triangle matrix, so its eigenvalues are exactly the elements in the diagonal. Now to determine its Jordan form, by noting that 
+    \[
+    \rank (A^3 - \lambda^3I)^k = n - k	
+    \]
+    we have the Jordan form of $A^3$, that is 
+    \[ J_3 = 
+    \begin{pmatrix}
+        \lambda^3 & 1 & 0  & \cdots & 0  \\
+        0 & \lambda^3 & 1 & 0  & \cdots   \\
+        \vdots & &\vdots & & \vdots \\
+        0 & 0& 0& 0& \lambda^3 
+    \end{pmatrix}
+    \]
+    By assumption, $J_3$ is also the Jordan form of $B^3$, so we have
+    \[
+    B^3 = QJ_3Q^{-1}	
+    \]
+    now if $B = PJ_1P^{-1}$ where $J_1$ is a Jordan form, then we have
+    \[
+    B^3 = PJ_1^3P^{-1} = QJ_3Q^{-1}
+    \]
+    so $J_1^3$ is simliar to $J_3$. In particular, we can let $J_1 = A$, and by the uniqueness of Jordan canonical form, we are done. $\qed$
+
+    
+    \item Rewrite the equation as 
+    \[
+    AAB - ABA =	ABA - BAA
+    \]
+    and we have $A[A,B] = [A,B]A$. We show a lemma first. \\
+    \textbf{Lemma. } If $\tr(A^n)=0$ for all positive integers $n$, then $A$ is nilpotent. \\
+    \textit{Proof.} If not, then $A$ has some non-zero distinct eigenvalues $\lambda_i, i = 1, \cdots ,k$. Let $n_i$ be the multiplicity of $\lambda_i$. Then we have
+    \[
+    \left\{\begin{array}{ccc}
+    n_1\lambda_1+\cdots+n_r\lambda_r&=&0 \\ 
+    \vdots &  & \vdots \\ 
+    n_1\lambda_1^r+\cdots+n_r\lambda_r^r&=&0
+    \end{array}\right.
+    \]
+    that is, 
+    \[
+    \left(\begin{array}{cccc}\lambda_1&\lambda_2&\cdots&\lambda_r\\\lambda_1^2 & \lambda_2^2 & \cdots & \lambda_r^2 \\ \vdots & \vdots & \vdots & \vdots \\ \lambda_1^r & \lambda_2^r & \cdots & \lambda_r^r\end{array}\right)\left(\begin{array}{c}n_1 \\ n_2 \\ \vdots \\ n_r \end{array}\right)=\left(\begin{array}{c}0 \\ 0\\ \vdots \\ 0\end{array}\right)	
+    \]
+    But 
+    \[
+    \mathrm{det}\left(\begin{array}{cccc}\lambda_1&\lambda_2&\cdots&\lambda_r\\\lambda_1^2 & \lambda_2^2 & \cdots & \lambda_r^2 \\ \vdots & \vdots & \vdots & \vdots \\ \lambda_1^r & \lambda_2^r & \cdots & \lambda_r^r\end{array}\right)=\lambda_1\cdots\lambda_r\,\mathrm{det}\left(\begin{array}{cccc} 1 & 1 & \cdots & 1 \\ \lambda_1&\lambda_2&\cdots&\lambda_r\\\lambda_1^2 & \lambda_2^2 & \cdots & \lambda_r^2 \\ \vdots & \vdots & \vdots & \vdots \\ \lambda_1^{r-1} & \lambda_2^{r-1} & \cdots & \lambda_r^{r-1}\end{array}\right)\neq 0
+    \]
+    as this is a Vandermonde matrix. Therefore all $n_i$'s are zero, a contradiction.
+
+    Now we need to show that $\tr([A,B]^n) = 0$ for all positive integers $n$, then by the lemma we are done. For $k \geq 0$, we have 
+    \[
+    [A,B]^{k+1} = (AB-BA)[A,B] = AB[A,B] - BA[A,B] = AB[A,B] - B[A,B]A	
+    \] 
+    then the trace is 
+    \[
+    \tr([A,B])^{k+1}) = \tr(AB[A,B]) - \tr(B[A,B]A) = \tr(B[A,B]A) - \tr(B[A,B]A) = 0
+    \]
+    by the cyclic property of trace. Then $[A,B]$ is nilpotent by lemma, therefore $[A,B]^n = 0. \qed$
+\end{enumerate}

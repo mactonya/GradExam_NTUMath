@@ -1,0 +1,101 @@
+\begin{center}
+    \textbf{National Taiwan University Dept. of Mathematics \\ Graduate Entrance Exam 2017: Linear Algebra \\ Solutions} 
+    \noindent\rule{\textwidth}{0.4pt}
+\end{center}
+\begin{enumerate}
+    \item The proof is by induction. The case $n = 1$ is trivial, as $\mathbb{R}$ is not a countable union of points $(\mathbb{R}^0)$. Assume that the case $n = k - 1$ is true. For the case $n = k$, suppose the contrary, i.e.
+    \[
+    \mathbb{R}^k = \bigcup_{i \in \mathbb{N}} W_i	
+    \]
+    where $W_i \subsetneq \mathbb{R}^k$ is a $(n-1)$-dimesional subspace (we can assume this without loss of generality). Let $G$ be a $(n-1)$-dimesional subspace that is not in $\{W_i\}_{i \in \mathbb{N}}$. Then we can clearly write
+    \[
+        G = \mathbb{R}^k \cap G = \bigcup_{i \in \mathbb{N}} \;(W_i \cap G)
+    \]
+    As $G$ is not in $W_i$, every $(W_i \cap G)$ has dimesion less than $n-1$. So we can write a $(n-1)$-dimesional subspace as a countable union of proper subspaces. But this is a contradiction to our induction, so $\mathbb{R}^k$ cannot be represent as a countable union of proper subspace. Therefore there must be some $W_i$ that is the whole space, which proved the assertion. $\qed$
+    \item First we need to diagonalize the quadratic form. Finding the eigenvectors could be pretty hard, so we try to complete the squares:
+    \begin{align*}
+        &ax^2 + by^2 + cz^2 + 2dxy + 2eyz + 2fxz \\ 
+        &= a\left(x + \frac{d}{a}y + \frac{f}{a}z\right)^2 + \left(2e-2\frac{df}{a}\right)yz + \left(b-\frac{d^2}{a}\right)y^2 + \left(c-\frac{f^2}{a}\right)z^2 \\ 
+        &= a\left(x + \frac{d}{a}y + \frac{f}{a}z\right)^2 + \left(b-\frac{d^2}{a}\right)\left(y+\frac{e-\frac{df}{a}}{b-\frac{d^2}{a}}z\right)^2 + \left(c-\frac{f^2}{a} - \frac{e-\frac{df}{a}}{b-\frac{d^2}{a}}\right)z^2
+    \end{align*}
+    So we perform the change of variable
+    \begin{align*}
+        &u = \sqrt{a}\left(x + \frac{d}{a}y + \frac{f}{a}z\right) \\
+        &v = \sqrt{b-\frac{d^2}{a}}\left(y+\frac{e-\frac{df}{a}}{b-\frac{d^2}{a}}z\right) \\
+        &w = \sqrt{c-\frac{f^2}{a} - \frac{e-\frac{df}{a}}{b-\frac{d^2}{a}}}z
+    \end{align*}
+    and we have the change of variable matrix
+    \[
+    \begin{pmatrix}
+        u \\ v \\ w
+    \end{pmatrix}	
+    = 
+    \begin{pmatrix}
+        \sqrt{a} & * & * \\ 
+        0 & \sqrt{b-\frac{d^2}{a}} & * \\ 
+        0 & 0 & \sqrt{c-\frac{f^2}{a} - \frac{e-\frac{df}{a}}{b-\frac{d^2}{a}}}
+    \end{pmatrix}
+    \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix}
+    \]
+    the determinant of this matrix is 
+    \[
+    \sqrt{abc+2def-ae^2-bf^2-cd^2}
+    \]
+    Now the quadratic form is converted to $u^2 + v^2 + w^2 = 1$, which is a sphere with radius 1, so it has volume
+    \[
+    \frac{4\pi}{3} = \det \times Q_{x,y,z}
+    \]
+    therefore
+    \[
+    Q = \frac{4\pi}{3\sqrt{abc+2def-ae^2-bf^2-cd^2}} \qed
+    \]
+    \item The determinant
+    \[
+    \begin{vmatrix}
+        t & 2t^2 & 3t^3 & 4t^4 \\
+        t^2 & 2t^3 & 3t^4 & 4t \\ 
+        t^3 & 2t^4 & 3t & 4t^2 \\
+        t^4 & 2t & 3t^2 & 4t^3 
+    \end{vmatrix} = 24t^4 (1-t^4)^3
+    \]
+    is only zero for finitely many $t$. $\qed$
+    \item The characteristic polynomial is $(\lambda-1)^2(\lambda-2)^2$, and in order to fail the diagonalizability, we must let one eigenvalue's geometric multiplicity less than its algebraic multiplicity:
+    \begin{itemize}
+        \item The case $\lambda = 1$ gives the matrix
+        \[
+        \begin{pmatrix}
+            0 & a & b & c \\
+            0 & 0 & d & e \\
+            0 & 0 & 1 & f \\
+            0 & 0 & 0 & 1
+        \end{pmatrix}
+        \]
+        and we want this matrix to be rank 3. As long as $a \neq 0$, this matrix will be rank 3.
+        \item The case $\lambda = 2$ gives the matrix
+        \[
+        \begin{pmatrix}
+            -1 & a & b & c \\
+            0 & -1 & d & e \\
+            0 & 0 & 0 & f \\
+            0 & 0 & 0 & 0
+        \end{pmatrix}
+        \]
+        and we want this matrix to be rank 3.  As long as $f \neq 0$, this matrix will be rank 3.	
+    \end{itemize}
+    \item The assumption implys that if $Au = \lambda u$, then 
+    \[
+    (A^7 - I) = (\lambda^7 - 1) = 0
+    \]
+    and one root of $\lambda$ is 1. $\qed$
+    \item 
+    \begin{enumerate}
+        \item True. Since $\ker \psi$ has dimesion $n-1$, $\im \psi$ has dimesion 1, and has a basis $\beta \in \mathbb{R}^n$, all vector in $\im \psi$ can be represent as $\lambda \beta$ for some $\lambda \in \mathbb{R}$. As $\im \psi$ is invariant under $\psi$, the conclusion is immediate. $\qed$
+        \item True. By the relation
+        \[
+        \dim (A+B) = \dim(A) + \dim(B) - \dim(A\cap B)	
+        \]
+        we know that $\dim(W_1\cap W_2)$ could be $6,7$ or 8. And the system is of rank 1 to 4, which means that the system has a solution of dimesion 9 to 6, so it is complete possible to find a system that has exactly $W_1 \cap W_2$ as solution space. $\qed$ 
+    \end{enumerate}
+\end{enumerate}

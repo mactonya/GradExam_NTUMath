@@ -1,0 +1,125 @@
+
+\begin{center}
+    \textbf{National Taiwan University Dept. of Mathematics \\ Graduate Entrance Exam 2014: Linear Algebra \\ Solutions} 
+    \noindent\rule{\textwidth}{0.4pt}
+\end{center}
+
+\begin{enumerate}
+    \item The first problem is flawed as the solution space of the given two equations is only 1-dimensional.
+    \item 
+    \begin{enumerate}[label=(\arabic*)]
+        \item $f(\lambda) = \det(A - \lambda I) = - \lambda^{3} + 7 \lambda^{2} - 15 \lambda + 9$. 
+        \item The solutions of $f$ are $1$ and $3$, in which $3$ has multiplicity of 2. If $\lambda = 1$ we have
+        \[ A-I = 
+        \begin{pmatrix}
+        0 & 2 & 2 \\
+        1 & 1 & -1 \\
+        -1 & 1 & 3
+        \end{pmatrix}
+        \]
+        and a possible eigenvector is 
+        \[
+        e_1 = 
+        \begin{pmatrix}
+        -2 \\ 1 \\ -1
+        \end{pmatrix}
+        .\]
+        When $\lambda = 3$ we have
+        \[ A-3I = 
+        \begin{pmatrix}
+        -2 & 2 & 2 \\
+        1 & -1 & -1 \\
+        -1 & 1 & 1
+        \end{pmatrix}
+        \]
+        which has two eigenvectors as the rank is $1$:
+        \[
+        e_2 = 
+        \begin{pmatrix}
+        1 \\ 0 \\ 1
+        \end{pmatrix}, \quad
+        e_3 = 
+        \begin{pmatrix}
+        1 \\ 1 \\ 0
+        \end{pmatrix}.
+        \]
+        Therefore we have
+        \[
+        P = 
+        \begin{pmatrix}
+        -2 & 1 & 1 \\
+        1 & 0 & 1 \\
+        -1 & 1 & 0
+        \end{pmatrix}
+        . \qed\]
+    \end{enumerate}
+    \item
+    \begin{enumerate}[label=(\arabic*)]
+        \item If $A^k = 0$, then $I - A^k = I$, and 
+        \[
+        (I-A)(I+A+A^2+A^3+\cdots+A^{k-1}) = I - A^k = I
+        \]
+        so $I-A$ is invertible.
+        \item First note that $\im(A^{k}) \subseteq \im(A^{k-1})$ since $A^k(V) = A^{k-1}(\im A) \subseteq A^{k-1}(V)$, so $\rank (A^{k}) \leq \rank(A^{k-1})$. But as $V$ is finite dimensional, the sequence of descending subsets (or ranks) must stop, meaning there exists some $p$ such that
+        \[
+        \rank (A^{p}) = \rank(A^{p+k}) \quad \text{ i.e. } A^p(V) = A^{p+k}(V) \quad \forall k \geq 0 \tag{1}
+        \]
+        Now consider the simplest nontrivial case, i.e. $p = 2$. If $\rank(A) = \rank(A^2)$, then 
+        \[
+        \dim(\im A) = \rank A = \rank A^2 = \dim(A(A(V)) = \dim(A(\im A)) = \rank( A\vert_{\im A})
+        \]
+        By viewing $A\vert_{\im A}$ as a endomorphism on $\im A$ (as $\im A$ is $A$-invariant), since the rank of $A$ is exactly $\im A$, we conclude that $A\vert_{\im A}$ is surjective (hence injective since $V$ is finite dimensional), so $\{0\} = \ker A\vert_{\im A} = \ker A \cap \im A$. Then it is immediate that
+        \[
+        V = \ker A \oplus \im A.
+        \]
+        Then for any $p \geq 2$ that satisfy (1), since $\rank (A^{p}) = \rank(A^{2p})$, by the simple case we have
+        \[
+        V = \ker A^p \oplus \im A^p.
+        \]
+        as desired. $\qed$
+    \end{enumerate}
+    \item
+    Just assume that $X$ is of form $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$, and after calculation we have
+    \[
+    L\begin{pmatrix} a & b \\ c & d \end{pmatrix} = \begin{pmatrix} -c-4b & 5b-d+a \\ 4a-5c-4d & 4b+c \end{pmatrix}
+    \]
+    and if we identify the $2 \times 2$ matrix by $\mathbb{R}^4$ then we have
+    \[
+    L\begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix} = 
+    \begin{pmatrix} 
+    0&-4&-1&0\\1&5&0&-1\\4&0&-5&-4\\0&4&1&0
+    \end{pmatrix}
+    \begin{pmatrix} a \\ b \\ c \\ d \end{pmatrix}
+    \]
+    To find a basis of $\im L$ we can plug in the standard $\mathbb{R}^4$ basis and simplify, and we have
+    \[
+    \left\{ \begin{pmatrix} 0\\1\\4\\0 \end{pmatrix}, \begin{pmatrix} -1\\0\\5\\1 \end{pmatrix} \right\}
+    \]
+    as a basis of $\im L$. Then by Dimension Theorem, the dimension of the kernel is $2$. $\qed$
+    \item
+    \begin{enumerate}[label=(\arabic*)]
+        \item Let $S = AA^*$ so $S = S^*$. Then $AA^*v = A^*Av = 0 = Sv$. Then 
+        \[
+        \langle Av, Av \rangle = \langle v, Sv \rangle = 0
+        \]
+        therefore $Av = 0$.
+        \item Let $k$ be the minimal positive integer such that $A^kv = 0$. Then
+        \[
+        S^kv = (A^*A)^kv = A^{*k}A^kv = 0
+        \]
+        so
+        \[
+        0 = \langle S^kv, S^{k-2}v \rangle = \langle S^{k-1}v, S^{k-1}v \rangle
+        \]
+        and $S^{k-1}v = 0$. Then following this pattern we have $Sv = 0$, and by the previous question $Av = 0$.
+        \item If the minimal polynomial of $A$, say $f$, has repeated roots, i.e. $O = f(A) = (A-kI)^p g(A)$ where $p>1$, $g(A)$ is some polynomial, then for all  $v \in \im g(A)$, we have
+        \[
+        0 = (A-kI)^p v
+        \]
+        Then previous problem and the fact that $(A-kI)$ is normal for all $k$ impiles that $(A-kI)v = 0$ for all $v \in \im g(A)$, therefore
+        \[
+        (A - kI)g(A) = O
+        \]
+        but this polynomial has degree less than $f$, contradicting to the hypotheses that $f$ is minimal. Hence the charactristic polynomial of $A$ must not have repeated roots. $\qed$
+    \end{enumerate}
+\end{enumerate}

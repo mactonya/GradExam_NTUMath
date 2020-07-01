@@ -1,0 +1,149 @@
+
+\begin{center}
+    \textbf{National Taiwan University Dept. of Mathematics \\ Graduate Entrance Exam 2014: Advanced Calculus/Analysis \\ Solutions} 
+    \noindent\rule{\textwidth}{0.4pt}
+    \end{center}
+    
+    \begin{enumerate}
+        \item The function
+        \[
+        f(x) =
+        \begin{cases}
+        x^2\cos(\frac{1}{x}), &x \neq 0 \\
+        0, &x = 0
+        \end{cases}
+        \]
+        is differentiable and has derivative
+        \[
+        f'(x) =
+        \begin{cases}
+        2x\cos(\frac{1}{x}) + \sin (\frac{1}{x}), &x \neq 0 \\
+        0, &x = 0
+        \end{cases}
+        \]
+        but $\lim_{x \to 0} f'(x)$ does not exist as sin oscillates near 0, therefore not continuous. $\qed$
+        \item For every $\epsilon > 0$ we must find $\delta > 0$ such that
+        \[
+        \left\vert \frac{x}{\sqrt{x^2+5}} - \frac{2}{3} \right\vert < \epsilon \text{ whenever } |x - 2| < \delta	\tag{*}
+        \]
+        Consider the "close" case $|x - 2| < 1$, i.e. $1 < x < 3$. Then
+        \begin{align*}
+        \left\vert \frac{x}{\sqrt{x^2+5}} - \frac{2}{3} \right\vert &= \left\vert \frac{3x - 2\sqrt{x^2+5}}{3\sqrt{x^2+5}} \right\vert \\
+        &= \left\vert \frac{(3x - 2\sqrt{x^2+5})(3x + 2\sqrt{x^2+5})}{(3\sqrt{x^2+5})(3x + 2\sqrt{x^2+5})} \right\vert \\
+        &= \left\vert \frac{5x^2-20}{(3\sqrt{x^2+5})(3x + 2\sqrt{x^2+5})} \right\vert
+        \end{align*}
+        Now notice that the numerator is 
+        \[
+        |5x^2 - 20| = 5|(x+2)(x-2)| < 25 |x-2|
+        \]
+        and the denominator is
+        \[
+        |(3\sqrt{x^2+5})(3x + 2\sqrt{x^2+5})| > 9\sqrt{5} + 30 > 50
+        \]
+        for all $x \in (1,3)$. Now we can choose
+        \[
+        \delta = \min (1, \epsilon /2)	
+        \]
+        and it will satisfy $(^*)$.  $\qed$
+        \item False. We can construct a counterexample
+        \[
+        n_1 = (1,0,0,\cdots), n_2 = (0,1,0,0, \cdots), n_3 = (0,0,1,0,0,\cdots), \cdots
+        \]
+        The sequence $\{n_i\}_{i=1}^\infty$ is in $B$, but $B$ is not (sequentially) compact as $\{n_i\}_{i=1}\infty$ does not have any convergent subsequence.  $\qed$
+        \item False. Only if the metric space is \textit{complete}, then any Cauchy sequence will converge in $X$. A counterexample is given by an non-complete metric space
+        \[
+        X = (\mathbb{Q}, d) \quad \text{ where } \quad d(x,y) = |x-y|
+        \]
+        then there are seqences in $X$ that converges to $\sqrt{2}$, but $\sqrt{2} \notin \mathbb{Q}$. $\qed$
+        \item False. Choose a partition $0 = a_0 < a_1 < \cdots < a_n = 1$. Then we can always find $k$ even such that
+        \[
+        0 < \frac{1}{(k+\frac{3}{2})\pi} < \frac{1}{(k+\frac{1}{2})\pi} < a_1
+        \]
+        by Archimedean principle. Then $f\left(\frac{1}{(k+\frac{3}{2})\pi}\right) = -1$, $f\left(\frac{1}{(k+\frac{1}{2})\pi}\right) = 1$. Therefore for any $a_1 > 0$, the upper Riemann sum and the lower Riemann sum will never be equal in $[0,a_1]$ (and there is a partition $P$ such that $U(P, f) = L(P, f)$ on $[a_1, 1]$ by continuity), hence $f$ is not Riemann integrable. $\qed$
+        \item False. Notice that the outer measure on $B(\epsilon)$ is $\epsilon$, and $[0,1]$ has outer measure 1. By the fact that if $A \subseteq B$ then $m^*(A) \leq m^*(B)$, we have that for $\epsilon < 1$, $B$ will never cover $[0,1]$. $\qed$
+        \item 
+        \begin{enumerate}
+            \item 
+            \item We guess that the value is $f(1)$, as the function $K_n(x)$ became concentrate at 1 as $n \to \infty$. We proof our claim below. \\
+            First notice that 
+            \[
+            \int_0^1 K_n(x) = 1   \tag{1} 
+            \]
+            and
+            \[
+            \int_0^{1-\delta} K_n(x) \to 0 \text{ as } n \to \infty \tag{2}
+            \]
+            for every $\delta < 1$. Now as $f$ is continuous, for any $\epsilon > 0$ we can find $\delta > 0$ such that
+            \[
+            |f(x)-f(1)| < \epsilon \text{ whenever } |1-x| < \delta
+            \]
+            therefore
+            \begin{align*}
+            \left|\int^1_0 K_n(x) f(x) dx - f(1) \right| &= \left|\int^1_0 K_n(x) f(x) - f(1) dx \right| \overset{(1)}{=} \left|\int^1_0 K_n(x) (f(x) -  f(1)) dx\right| \\
+            &\leq \int^1_{1-\delta} |K_n(x) (f(x) -  f(1))| dx + \int^{1-\delta}_0 |K_n(x) (f(x) -  f(1))| dx \\
+            &\leq \epsilon + \int^{1-\delta}_0 2M K_n(x) \overset{(2)}{\to} \epsilon \text{ as } n \to \infty
+            \end{align*}
+            where $M$ is the number such that $|f(x)| \leq M$ for all $x \in [0,1]$. By the arbitrariness of $\epsilon$, we conclude that $\int^1_0 K_n(x) f(x) dx = f(1). \qed$
+        \end{enumerate}
+        \item 
+        $f$ is integrable means that for every $\epsilon > 0$, there exists a partition $P = \{a=x_0, x_1, \cdots x_n = b\}$ such that
+        \[
+        \left\vert \int_a^b f(x)dx - \sum_{i=1}^n m_i (x_i - x_{i-1}) \right\vert < \epsilon
+        \]
+        where $m_i$ is the minimum of $f$ on $[x_{i-1}, x_i]$. This is the same as 
+        \[
+        0 \leq \int_a^b f(x) - g(x) < \epsilon	
+        \]
+        where $g(x) = \sum_{i=1}^n m_i \chi_{[x_{i-1}, x_i]}.$ Then 
+        \begin{align*}
+        \int_a^b f(x) \sin nx \; dx &\leq \int_a^b (f(x) - g(x)) \sin nx\; dx + \int_a^b g(x) \sin nx \;dx \\
+        &\leq \int_a^b (f(x) - g(x))\;dx + \left\vert \frac{1}{n} \sum_i m_i (\cos n x_i - \cos n x_{i-1} ) \right\vert
+        \end{align*}
+        the former part is less than $\epsilon$, and the latter can be arbitrary small (we can choose $\epsilon$) as we take $n$ large enough. So the sum is less than $2\epsilon$, and by the arbitrariness of $\epsilon$, we conclude that
+        \[
+        \lim_{n \to \infty} \int_a^b f(x) \sin nx \; dx = 0. \qed
+        \]
+        \item 
+        \begin{enumerate}
+            \item Arezla-Ascoil Theorem states that a sequence of functions $\{f_n\}_{n \in \mathbb{N}}$ is uniform bounded and equicontinuous if and only if $\{f_n\}_{n \in \mathbb{N}}$ admits a subsequence that converges uniformly.
+            \item This problem is flawed, as we can find a counterexample
+            \[
+                f_n(x) = -n. \qed
+            \]
+        \end{enumerate}
+        \item Consider a $C^\infty$ function $F$
+        \[
+        F(x,y,z) = x^3+y^3+z^3-3xyz-1.
+        \]
+        \begin{enumerate}
+            \item We calculate the partial derivative
+            \[
+            \frac{\partial F}{\partial z}  = 3z^2 - 3xy	
+            \]
+            and since $\frac{\partial F}{\partial z} (0,0,1) = 3 \neq 0$, by Implict Function Theorem there exists a neighborhood near $(0,0,1)$ such that $z = z(x,y)$, and it has the same differentiabiliy as $F$, i.e. $C^\infty$.
+            \item We calculate the partial derivative
+            \[
+            \frac{\partial F}{\partial x}  = 3x^2 - 3yz	
+            \]
+            and since $\frac{\partial F}{\partial z} (0,0,1) = 0$, $x$ cannot be represent as a function $x=x(y,z)$. 
+        \end{enumerate}
+        \item
+        \begin{enumerate}
+            \item 
+            The left hand side can be directly calculated as
+            \begin{align*}
+                \lim_{h \to 0} \int_c^d \frac{f(x+h, y) - f(x,y) }{h} dy
+            \end{align*}
+            and if we can pass the limit through the integral, then the assertion is proved. By the continuity of $f$, we can use mean value theorem to find $z \in [x,x+h]$ such that 
+            \[
+                f_h(z,y) = f_d(x,y) =  \frac{f(x+d, y) - f(x,y)}{d}
+            \]
+            where $f_d$ is the difference defined at the right. As $\frac{\partial f}{\partial x}$ is continuous and hence bounded in $[a,b]$, we have that for every sequence $\{n_k\} \to 0$, the sequence $\{f_{n_k}(x,y)\}$ is \textit{uniformly} bounded (as it does not depend on $n_k$ by the equation above) and converges pointwise to $\frac{\partial f}{\partial x}$ (by the existence of the partial derivative), therefore by Bounded convergence theorem, the limit can be passed through the integral sign, which proved the assertion.
+    
+            All the needed additional requirement in the proof above are the continuity of $f$ and $\dfrac{\partial f}{\partial x}$.
+            \item The equation can be rewritten as 
+            \[
+            \lim_{d \to 0} \lim_{n \to \infty} \int_0^n \frac{f(x+d, y) - f(x,y)}{d} dy = \lim_{n \to \infty} \int_0^n \lim_{d \to 0} \frac{f(x+d, y) - f(x,y)}{d} dy
+            \]
+        \end{enumerate}
+    \end{enumerate}
